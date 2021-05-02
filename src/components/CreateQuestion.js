@@ -1,5 +1,7 @@
 import React from "react"
-import { _saveQuestion } from "../API/_data"
+import { connect } from "react-redux"
+import { handleAddQuestion } from '../actions/questions'
+
 class CreateQuestion extends React.Component {
     state = {
         Option1: "",
@@ -16,44 +18,39 @@ class CreateQuestion extends React.Component {
     handleClick = (e) => {
         e.preventDefault()
         let { Option1, Option2 } = this.state
+        let { authedUser } = this.props
 
         if (Option1.trim() === "" || Option2.trim() === "") {
             this.setState({ showError: true })
         }
         else {
-            let prevState = { ...this.state }
+            // let prevState = { ...this.state }
             let question = {
                 optionOneText: Option1,
                 optionTwoText: Option2,
-                // Todo: get the authed user
-                author: "johndoe"
+                author: authedUser
             }
             this.setState({
                 Option1: "",
                 Option2: "",
                 showError: false
             })
-            _saveQuestion(question)
-                .then((resp) => {
-                })
-                .catch((err) => {
-                    this.setState(prevState)
-                    alert('Error Happened, please try again in a while')
-                })
+
+            this.props.handleAddQuestion(question)
+            // Todo: if failed return the value in inputs
+
+            // Todo: if saved redirect
         }
     }
     render() {
         return (
             <div>
-                <div>
-                    Create New Question
-                </div>
-                <div>
-                    Complete the question
-                </div>
-                <div>
-                    Would you rather:
-                </div>
+                <div>Create New Question</div>
+
+                <div>Complete the question</div>
+
+                <div>Would you rather:</div>
+
                 <form>
                     <input type="text" name="Option1"
                         value={this.state.Option1}
@@ -70,6 +67,7 @@ class CreateQuestion extends React.Component {
                     {this.state.showError &&
                         <div>Please, fill both the two options</div>
                     }
+
                     <div>
                         <button onClick={this.handleClick}>Submit</button>
                     </div>
@@ -78,4 +76,12 @@ class CreateQuestion extends React.Component {
         )
     }
 }
-export default CreateQuestion
+
+const mapStateToProps = (state) => ({
+    authedUser: state.authedUser
+})
+const mapDispatchToProps = {
+    handleAddQuestion
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(CreateQuestion)
