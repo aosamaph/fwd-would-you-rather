@@ -7,12 +7,14 @@ import AnswerQuestion from './components/AnswerQuestion';
 import Login from './components/Login';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import AppHeader from './components/AppHeader';
+import Home from './components/Home';
 
 function App() {
   return (
     <div className="App">
       <AppHeader />
-      <hr />
+      <Home />
+      {/* <hr />
       <Login />
 
       <AnswerQuestion />
@@ -20,7 +22,7 @@ function App() {
       <LeaderBoard />
       <hr />
       <CreateQuestion />
-      <QuestionsList />
+      <QuestionsList /> */}
 
     </div>
   );

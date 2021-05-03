@@ -1,9 +1,14 @@
 import React from 'react'
 
 class QuestionCard extends React.Component {
-
+    handleClick = () => {
+        const { question } = this.props
+        // Todo: redirect based on q.isAnswered
+        if (question.isAnswered) { }
+        else { }
+    }
     render() {
-        const { question, onClick } = this.props
+        const { question } = this.props
         return (
             <div>
                 <img src={question.author.avatarURL}
@@ -11,7 +16,7 @@ class QuestionCard extends React.Component {
                 <div>{question.author.name} Asks</div>
                 <div>Would You Rather</div>
                 <div>{question.optionOne.text} OR {question.optionTwo.text}</div>
-                <button onClick={() => { onClick() }}>View Poll</button>
+                <button onClick={this.handleClick}>View Poll</button>
             </div>
         )
     }
