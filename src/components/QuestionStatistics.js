@@ -37,6 +37,7 @@ class QuestionStatistics extends React.Component {
 const mapStateToProps = (state) => {
     const { users, questions, authedUser } = state
 
+    // Todo: remove this id
     let qid = '6ni6ok3ym7mf1p33lnez'
     return {
         question: {

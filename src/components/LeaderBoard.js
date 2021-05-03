@@ -10,7 +10,6 @@ class LeaderBoard extends React.Component {
         return (
             <div>
                 {map(users, (u, i) => {
-                    console.log('user to userScoreCard', u);
                     return <UserScoreCard key={u.id} user={u} ranking={i + 1} />
                 })}
             </div>

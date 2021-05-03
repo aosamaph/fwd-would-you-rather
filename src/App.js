@@ -3,12 +3,14 @@ import CreateQuestion from './components/CreateQuestion';
 import LeaderBoard from './components/LeaderBoard';
 import QuestionStatistics from './components/QuestionStatistics';
 import QuestionsList from './components/QuestionsList';
+import AnswerQuestion from './components/AnswerQuestion';
 
 function App() {
   return (
     <div className="App">
-      <QuestionStatistics />
+      <AnswerQuestion />
       <hr />
+      <QuestionStatistics />
       <LeaderBoard />
       <hr />
       <CreateQuestion />
