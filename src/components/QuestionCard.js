@@ -1,11 +1,16 @@
 import React from 'react'
+import { withRouter } from 'react-router-dom'
 
 class QuestionCard extends React.Component {
     handleClick = () => {
-        const { question } = this.props
-        // Todo: redirect based on q.isAnswered
-        if (question.isAnswered) { }
-        else { }
+
+        const { question, history } = this.props
+        if (question.isAnswered) {
+            history.push(`/question/votes/${question.id}`)
+        }
+        else {
+            history.push(`/question/${question.id}`)
+        }
     }
     render() {
         const { question } = this.props
@@ -22,4 +27,4 @@ class QuestionCard extends React.Component {
     }
 }
 
-export default QuestionCard
+export default withRouter(QuestionCard)

@@ -1,43 +1,50 @@
-import './App.css';
-import CreateQuestion from './components/CreateQuestion';
-import LeaderBoard from './components/LeaderBoard';
-import QuestionStatistics from './components/QuestionStatistics';
-import AnswerQuestion from './components/AnswerQuestion';
-import Login from './components/Login';
+import './App.css'
+import CreateQuestion from './components/CreateQuestion'
+import LeaderBoard from './components/LeaderBoard'
+import QuestionStatistics from './components/QuestionStatistics'
+import AnswerQuestion from './components/AnswerQuestion'
+import Login from './components/Login'
 import 'bootstrap/dist/css/bootstrap.min.css'
-import AppHeader from './components/AppHeader';
-import Home from './components/Home';
+import AppHeader from './components/AppHeader'
+import Home from './components/Home'
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
+import PrivateRoute from './components/PrivateRoute'
+import PublicRoute from './components/PublicRoute'
+import { connect } from 'react-redux'
+import { handleInitialData } from './actions/shared'
+import React from 'react'
 
-function App() {
-  return (
-    <div className="App">
-      <BrowserRouter>
-        <AppHeader />
-        <Switch>
-          <Route path="/new" component={CreateQuestion} />
-          <Route path="/leaderBoard" component={LeaderBoard} />
-          <Route path="/question/$id" component={AnswerQuestion} />
-          <Route path="/question/votes/$id" component={QuestionStatistics} />
-          <Route path="/login" component={Login} />
-          <Route path="/" exact component={Home} />
-        </Switch>
-      </BrowserRouter>
-    </div>
+class App extends React.Component {
+  // Todo: add 404 page
 
-    //   <Home />
-    //   {/* <hr />
-    //   <Login />
+  componentDidMount() {
+    const { handleInitialData } = this.props
+    handleInitialData()
+  }
 
-    //   <AnswerQuestion />
-    //   <QuestionStatistics />
-    //   <LeaderBoard />
-    //   <hr />
-    //   <CreateQuestion />
-    //   <QuestionsList /> */}
+  render() {
+    const isAuthenticated = this.props.authedUser ? true : false
 
-    // </div>
-  );
+    return (
+      <div className="App">
+        <BrowserRouter>
+          <AppHeader />
+          <Switch>
+            <PrivateRoute path="/new" component={CreateQuestion} authenticated={isAuthenticated} />
+            <PrivateRoute path="/leaderBoard" component={LeaderBoard} authenticated={isAuthenticated} />
+            <PrivateRoute path="/question/votes/:id" component={QuestionStatistics} authenticated={isAuthenticated} />
+            <PrivateRoute path="/question/:id" component={AnswerQuestion} authenticated={isAuthenticated} />
+            <PublicRoute path="/login" component={Login} authenticated={isAuthenticated} />
+            <Route path="/" exact component={Home} />
+          </Switch>
+        </BrowserRouter>
+      </div>
+    )
+  }
 }
 
-export default App;
+const mapStateToProps = ({ authedUser }) => ({ authedUser })
+const mapDispatchToProps = {
+  handleInitialData
+}
+export default connect(mapStateToProps, mapDispatchToProps)(App);

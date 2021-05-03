@@ -2,6 +2,7 @@ import { includes } from 'lodash'
 import React from 'react'
 import { connect } from 'react-redux'
 import OptionStatistics from './OptionStatistics'
+import { withRouter } from 'react-router-dom'
 
 class QuestionStatistics extends React.Component {
 
@@ -34,11 +35,10 @@ class QuestionStatistics extends React.Component {
     }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state, props) => {
     const { users, questions, authedUser } = state
 
-    // Todo: remove this id
-    let qid = '6ni6ok3ym7mf1p33lnez'
+    let qid = props.match.params.id
     return {
         question: {
             ...questions[qid],
@@ -51,4 +51,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps)(QuestionStatistics)
+export default withRouter(connect(mapStateToProps)(QuestionStatistics))

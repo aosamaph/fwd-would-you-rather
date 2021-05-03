@@ -6,6 +6,7 @@ import { connect } from 'react-redux'
 import { map } from 'lodash'
 import { DropdownButton } from 'react-bootstrap'
 import { login } from '../actions/authedUser'
+import { withRouter } from 'react-router-dom'
 
 class Login extends React.Component {
     state = {
@@ -25,7 +26,9 @@ class Login extends React.Component {
         const { login } = this.props
 
         login(selectedID)
+        this.props.history.push('/')
     }
+
     render() {
         const { users } = this.props
         return (
@@ -59,4 +62,4 @@ const mapStateToProps = ({ users }) => ({ users })
 const mapDispatchToProps = {
     login
 }
-export default connect(mapStateToProps, mapDispatchToProps)(Login)
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Login))

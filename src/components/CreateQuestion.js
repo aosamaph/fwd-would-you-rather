@@ -1,6 +1,7 @@
 import React from "react"
 import { connect } from "react-redux"
 import { handleAddQuestion } from '../actions/questions'
+import { withRouter } from 'react-router-dom'
 
 class CreateQuestion extends React.Component {
     state = {
@@ -24,7 +25,6 @@ class CreateQuestion extends React.Component {
             this.setState({ showError: true })
         }
         else {
-            // let prevState = { ...this.state }
             let question = {
                 optionOneText: Option1,
                 optionTwoText: Option2,
@@ -36,10 +36,12 @@ class CreateQuestion extends React.Component {
                 showError: false
             })
 
-            this.props.handleAddQuestion(question)
+            this.props.handleAddQuestion(question).then(
+                (res) => {
+                    this.props.history.push('/')
+                }
+            )
             // Todo: if failed return the value in inputs
-
-            // Todo: if saved redirect
         }
     }
     render() {
@@ -84,4 +86,4 @@ const mapDispatchToProps = {
     handleAddQuestion
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(CreateQuestion)
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(CreateQuestion))

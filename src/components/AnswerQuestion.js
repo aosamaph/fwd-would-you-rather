@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { handleSubmitAnswer } from '../actions/shared'
+import { withRouter } from 'react-router-dom'
 
 class AnswerQuestion extends React.Component {
     state = {
@@ -13,7 +14,7 @@ class AnswerQuestion extends React.Component {
         const { selected } = this.state
 
         this.props.handleSubmitAnswer(question.id, selected, authedUser).then((resp) => {
-            // Todo: redirect to home
+            this.props.history.push(`/question/votes/${question.id}`)
         })
     }
     handleChange = (e) => {
@@ -50,11 +51,10 @@ class AnswerQuestion extends React.Component {
     }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state, props) => {
     const { users, questions, authedUser } = state
 
-    // Todo: remove this id
-    let qid = '8xf0y6ziyjabvozdd253nd'
+    let qid = props.match.params.id
     return {
         question: {
             ...questions[qid],
@@ -69,4 +69,4 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = {
     handleSubmitAnswer
 }
-export default connect(mapStateToProps, mapDispatchToProps)(AnswerQuestion)
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(AnswerQuestion))
