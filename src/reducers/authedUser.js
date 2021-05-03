@@ -1,7 +1,7 @@
-import { LOGIN, LOGOUT } from "../actions/users";
+import { LOGIN, LOGOUT } from "../actions/authedUser";
 
 // Todo: remove hardcoded user
-const initialState = 'johndoe'
+const initialState = ''
 
 export const authedUser = (state = initialState, action) => {
     switch (action.type) {
