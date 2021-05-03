@@ -6,12 +6,14 @@ import QuestionsList from './components/QuestionsList';
 import AnswerQuestion from './components/AnswerQuestion';
 import Login from './components/Login';
 import 'bootstrap/dist/css/bootstrap.min.css'
+import AppHeader from './components/AppHeader';
 
 function App() {
   return (
     <div className="App">
-      <Login />
+      <AppHeader />
       <hr />
+      <Login />
 
       <AnswerQuestion />
       <QuestionStatistics />
