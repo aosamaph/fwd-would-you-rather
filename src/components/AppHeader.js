@@ -2,6 +2,7 @@ import React from 'react'
 import { Button, Nav, Navbar } from 'react-bootstrap'
 import { connect } from 'react-redux'
 import { logout } from '../actions/authedUser'
+import { Link } from 'react-router-dom'
 
 class AppHeader extends React.Component {
     handleClick = () => {
@@ -16,11 +17,11 @@ class AppHeader extends React.Component {
             <Navbar>
                 <Navbar.Brand >Would You Rather</Navbar.Brand>
                 <Nav className="mr-auto">
-                    <Nav.Link href="/">Home</Nav.Link>
-                    <Nav.Link href="/new">New Question</Nav.Link>
-                    <Nav.Link href="/leaderBoard">Leader Board</Nav.Link>
+                    <Link to="/" className='nav-link'>Home</Link>
+                    <Link to="/new" className='nav-link'>New Question</Link>
+                    <Link to="/leaderBoard" className='nav-link'>Leader Board</Link>
                     {!authedUser &&
-                        <Nav.Link href="/login">Login</Nav.Link>
+                        <Link to="/login" className='nav-link'>Login</Link>
                     }
                 </Nav>
                 {authedUser &&
