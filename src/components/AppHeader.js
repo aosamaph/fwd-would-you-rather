@@ -21,7 +21,7 @@ class AppHeader extends React.Component {
                 <Navbar.Brand >Would You Rather</Navbar.Brand>
                 <Nav className="mr-auto">
                     <Link to="/" className='nav-link'>Home</Link>
-                    <Link to="/new" className='nav-link'>New Poll</Link>
+                    <Link to="/add" className='nav-link'>New Poll</Link>
                     <Link to="/leaderBoard" className='nav-link'>Leader Board</Link>
                     {/* {!authedUser.id &&
                         <Link to="/login" className='nav-link'>Login</Link>
