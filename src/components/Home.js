@@ -1,4 +1,4 @@
-import { forEach, includes } from 'lodash'
+import { forEach, includes, sortBy } from 'lodash'
 import React from 'react'
 import { Nav } from 'react-bootstrap'
 import { connect } from 'react-redux'
@@ -43,7 +43,7 @@ class Home extends React.Component {
                 result = [...result, formated]
             }
         })
-        return result
+        return sortBy(result, (q => q.timestamp)).reverse()
     }
 
 
