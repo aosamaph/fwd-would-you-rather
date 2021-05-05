@@ -11,24 +11,27 @@ class QuestionStatistics extends React.Component {
         const totalVotes = question.optionOne?.votes.length + question.optionTwo?.votes.length
 
         return (
-            <div>
-                <div>Asked by {question.author.name}</div>
-                <div>
-                    <img src={question.author.avatarURL}
-                        alt='' height='50' />
-                </div>
-                <div>
-                    <div>Results</div>
-                    {question.optionOne &&
-                        <OptionStatistics
-                            option={question.optionOne}
-                            totalVotes={totalVotes}
-                            isMyOption={includes(question.optionOne?.votes, authedUser)} />}
-                    {question.optionTwo &&
-                        <OptionStatistics
-                            option={question.optionTwo}
-                            totalVotes={totalVotes}
-                            isMyOption={includes(question.optionTwo?.votes, authedUser)} />}
+            <div className='card'>
+
+                <h5 className='card-header'>Asked by {question.author.name}</h5>
+                <div className='card-body row'>
+                    <div className='col-4 text-center border-right'>
+                        <img src={question.author.avatarURL}
+                            alt='' height='100' />
+                    </div>
+                    <div className='col-8'>
+                        <h4 className='card-title'>Results:</h4>
+                        {question.optionOne &&
+                            <OptionStatistics
+                                option={question.optionOne}
+                                totalVotes={totalVotes}
+                                isMyOption={includes(question.optionOne?.votes, authedUser)} />}
+                        {question.optionTwo &&
+                            <OptionStatistics
+                                option={question.optionTwo}
+                                totalVotes={totalVotes}
+                                isMyOption={includes(question.optionTwo?.votes, authedUser)} />}
+                    </div>
                 </div>
             </div>
         )

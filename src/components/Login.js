@@ -1,7 +1,5 @@
 import React from 'react'
-import logo from '../logo.svg'
 import Dropdown from 'react-bootstrap/Dropdown'
-import Button from 'react-bootstrap/Button'
 import { connect } from 'react-redux'
 import { map } from 'lodash'
 import { DropdownButton } from 'react-bootstrap'
@@ -32,27 +30,34 @@ class Login extends React.Component {
     render() {
         const { users } = this.props
         return (
-            <div>
-                <div>Welcome to the Would You Rather App!</div>
-                <div>Please sign in to continue</div>
-                <div>
-                    <img src={logo}
-                        alt='App Logo'
-                        height='150'></img>
+            <div className='card'>
+                <div className='card-header text-center'>
+                    <h5>Welcome to the Would You Rather App!</h5>
+                    <span className='text-secondary'>Please sign in to continue</span>
                 </div>
-                <div>Sign In</div>
-                <DropdownButton title={this.state.selectedName} variant='secondary' >
-                    {map(users, (u) => {
-                        return (
-                            <Dropdown.Item key={u.id} eventKey={u.id}
-                                onSelect={this.handleSelect}>{u.name}</Dropdown.Item>
-                        )
-                    })}
-                </DropdownButton>
-                <Button className='btn btn-primary'
-                    onClick={this.handleClick}
-                    disabled={this.state.selectedID === ''}
-                >Sign In</Button>
+                <div className='card-body text-center'>
+                    <div>
+                        <img src='https://www.logolynx.com/images/logolynx/80/801614bad4ce983db96dc6e07b22ac0f.png'
+                            alt='App Logo'
+                            height='150'></img>
+                    </div>
+                    <h4 className='text-success display-4 font-weight-bold'>Sign In</h4>
+                    <div className='form-group'>
+                        <DropdownButton
+                            title={this.state.selectedName} variant='secondary' >
+                            {map(users, (u) => {
+                                return (
+                                    <Dropdown.Item key={u.id} eventKey={u.id}
+                                        onSelect={this.handleSelect}>{u.name}</Dropdown.Item>
+                                )
+                            })}
+                        </DropdownButton>
+                    </div>
+                    <button className='btn btn-success'
+                        onClick={this.handleClick}
+                        disabled={this.state.selectedID === ''}
+                    >Sign In</button>
+                </div>
             </div>
         )
     }

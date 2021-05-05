@@ -6,7 +6,7 @@ class QuestionsList extends React.Component {
     render() {
         const { questions } = this.props
         return (
-            <div>
+            <div className='border'>
                 {questions.map(q => (
                     <QuestionCard key={q.id} question={q} />
                 ))}

@@ -15,13 +15,22 @@ class QuestionCard extends React.Component {
     render() {
         const { question } = this.props
         return (
-            <div>
-                <img src={question.author.avatarURL}
-                    alt='' height='50' />
-                <div>{question.author.name} Asks</div>
-                <div>Would You Rather</div>
-                <div>{question.optionOne.text} OR {question.optionTwo.text}</div>
-                <button onClick={this.handleClick}>View Poll</button>
+            <div className='card m-2'>
+                <h5 className='card-header text-center'>{question.author.name} Asks</h5>
+                <div className='card-body row'>
+
+                    <div className='col-4 text-center border-right'>
+                        <img
+                            src={question.author.avatarURL}
+                            alt='' height='100' />
+                    </div>
+                    <div className='col-8 p-2'>
+                        <div className='h5'> Would You Rather</div>
+                        <div className='p-2'>...{question.optionOne.text}</div>
+                        <button className='btn btn-outline-info w-100'
+                            onClick={this.handleClick}>View Poll</button>
+                    </div>
+                </div>
             </div>
         )
     }

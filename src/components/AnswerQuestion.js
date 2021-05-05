@@ -25,27 +25,41 @@ class AnswerQuestion extends React.Component {
         const { question } = this.props
 
         return (
-            <div>
-                <div>
-                    <img src={question.author.avatarURL}
-                        alt='' height='50' />
+            <div className='card m-2'>
+                <h5 className='card-header'>{question.author.name} Asks:</h5>
+                <div className='card-body row'>
+
+                    <div className='col-4 text-center border-right'>
+                        <img src={question.author.avatarURL}
+                            alt='' height='100' />
+                    </div>
+                    <div className='col-8'>
+
+                        <div className='card-title'>Would you rather ...</div>
+                        <form>
+                            <div className='form-group'>
+                                <div className='form-check'>
+                                    <input className='form-check-input'
+                                        type="radio" id="optionOne" name={question.id} value="optionOne"
+                                        checked={this.state.selected === 'optionOne'}
+                                        onChange={this.handleChange} />
+                                    <label className='form-check-label' htmlFor="optionOne">{question.optionOne?.text}</label>
+                                </div>
+                                <div className='form-check'>
+                                    <input className='form-check-input'
+                                        type="radio" id="optionTwo" name={question.id} value="optionTwo"
+                                        checked={this.state.selected === 'optionTwo'}
+                                        onChange={this.handleChange} />
+                                    <label className='form-check-label' htmlFor="optionTwo">{question.optionTwo?.text}</label><br />
+                                </div>
+                            </div>
+                            <button className='btn btn-success w-100'
+                                onClick={this.handleClick}
+                                disabled={this.state.selected === ''}>
+                                Submit</button>
+                        </form>
+                    </div>
                 </div>
-                <div>{question.author.name} Asks:</div>
-                <div>Would you rather ...</div>
-                <form>
-                    <input type="radio" id="optionOne" name={question.id} value="optionOne"
-                        checked={this.state.selected === 'optionOne'}
-                        onChange={this.handleChange} />
-                    <label htmlFor="optionOne">{question.optionOne?.text}</label><br />
-                    <input type="radio" id="optionTwo" name={question.id} value="optionTwo"
-                        checked={this.state.selected === 'optionTwo'}
-                        onChange={this.handleChange} />
-                    <label htmlFor="optionTwo">{question.optionTwo?.text}</label><br />
-                    <button onClick={this.handleClick}
-                        disabled={this.state.selected === ''}>
-                        Submit
-                    </button>
-                </form>
             </div>
         )
     }

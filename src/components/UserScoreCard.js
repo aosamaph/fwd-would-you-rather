@@ -7,24 +7,30 @@ class UserScoreCard extends React.Component {
         let answersCount = Object.keys(user.answers).length
         let questionsCount = user.questions.length
         return (
-            <div>
-                <div>{ranking}</div>
-                <div>
-                    <img src={user.avatarURL}
-                        alt='' height='50' />
-                </div>
-                <div>{user.name}</div>
-                <div>
-                    <div>Answered Questions: </div>
-                    <div>{answersCount}</div>
-                </div>
-                <div>
-                    <div>Created Questions: </div>
-                    <div>{questionsCount}</div>
-                </div>
-                <div>
-                    <div>Score</div>
-                    <div>{answersCount + questionsCount}</div>
+            <div className='card m-2'>
+                <div className='position-fixed font-weight-bold'>{ranking}</div>
+                <div className='card-body row'>
+                    <div className='col-3 border-right text-center'>
+                        <img src={user.avatarURL}
+                            alt='' height='100' />
+                    </div>
+                    <div className='col-6'>
+                        <h4 className='card-title'>{user.name}</h4>
+                        <div className='row mb-2'>
+                            <div className='col-9'>Answered Questions: </div>
+                            <div className='col-3 text-right'>{answersCount}</div>
+                        </div>
+                        <div className='row mb-2'>
+                            <div className='col-9'>Created Questions: </div>
+                            <div className='col-3 text-right'>{questionsCount}</div>
+                        </div>
+                    </div>
+                    <div className='col-3 border-left text-center'>
+                        <div className='card border-success'>
+                            <div className='card-header font-weight-bold'>Score</div>
+                            <div className='card-body text-success font-weight-bold'>{answersCount + questionsCount}</div>
+                        </div>
+                    </div>
                 </div>
             </div>
         )

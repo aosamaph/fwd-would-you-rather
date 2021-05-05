@@ -41,39 +41,39 @@ class CreateQuestion extends React.Component {
                     this.props.history.push('/')
                 }
             )
-            // Todo: if failed return the value in inputs
         }
     }
     render() {
         return (
-            <div>
-                <div>Create New Question</div>
+            <div className='card m-2'>
+                <div className='card-header h5 text-center'>Create New Question</div>
 
-                <div>Complete the question</div>
+                <div className='card-body'>
 
-                <div>Would you rather:</div>
+                    <h5 className='card-title'>Complete the question:</h5>
 
-                <form>
-                    <input type="text" name="Option1"
-                        value={this.state.Option1}
-                        placeholder="Enter Option 1 Text Here"
-                        onChange={this.handleChange} />
+                    <p className='card-text'>Would you rather...</p>
 
-                    <div>OR</div>
-
-                    <input type="text" name="Option2"
-                        value={this.state.Option2}
-                        placeholder="Enter Option 2 Text Here"
-                        onChange={this.handleChange} />
-
-                    {this.state.showError &&
-                        <div>Please, fill both the two options</div>
-                    }
-
-                    <div>
-                        <button onClick={this.handleClick}>Submit</button>
-                    </div>
-                </form>
+                    <form>
+                        <div className='form-group'>
+                            <input className='form-control'
+                                type="text" name="Option1"
+                                value={this.state.Option1}
+                                placeholder="Enter Option 1 Text Here"
+                                onChange={this.handleChange} />
+                            <div className='text-center'>OR</div>
+                            <input className='form-control '
+                                type="text" name="Option2"
+                                value={this.state.Option2}
+                                placeholder="Enter Option 2 Text Here"
+                                onChange={this.handleChange} />
+                            {this.state.showError &&
+                                <div className='text-danger'>Please, fill both the two options</div>
+                            }
+                        </div>
+                        <button className='btn btn-primary w-100' onClick={this.handleClick}>Submit</button>
+                    </form>
+                </div>
             </div>
         )
     }

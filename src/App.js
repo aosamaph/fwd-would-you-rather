@@ -1,4 +1,3 @@
-import './App.css'
 import CreateQuestion from './components/CreateQuestion'
 import LeaderBoard from './components/LeaderBoard'
 import QuestionStatistics from './components/QuestionStatistics'
@@ -26,9 +25,9 @@ class App extends React.Component {
     const isAuthenticated = this.props.authedUser ? true : false
 
     return (
-      <div className="App">
-        <BrowserRouter>
-          <AppHeader />
+      <BrowserRouter>
+        <AppHeader />
+        <div className='container'>
           <Switch>
             <PrivateRoute path="/new" component={CreateQuestion} authenticated={isAuthenticated} />
             <PrivateRoute path="/leaderBoard" component={LeaderBoard} authenticated={isAuthenticated} />
@@ -37,8 +36,8 @@ class App extends React.Component {
             <PublicRoute path="/login" component={Login} authenticated={isAuthenticated} />
             <Route path="/" exact component={Home} />
           </Switch>
-        </BrowserRouter>
-      </div>
+        </div>
+      </BrowserRouter>
     )
   }
 }
