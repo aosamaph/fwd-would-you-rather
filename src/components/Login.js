@@ -21,10 +21,14 @@ class Login extends React.Component {
 
     handleClick = (e) => {
         const { selectedID } = this.state
-        const { login } = this.props
+        const { login, location } = this.props
+
+        let returnUrl = '/';
+        if (location.state && location.state.from && location.state.from.pathname)
+            returnUrl = location.state.from.pathname;
 
         login(selectedID)
-        this.props.history.push('/')
+        this.props.history.push(returnUrl)
     }
 
     render() {

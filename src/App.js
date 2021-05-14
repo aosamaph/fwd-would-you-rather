@@ -13,6 +13,7 @@ import { connect } from 'react-redux'
 import { handleInitialData } from './actions/shared'
 import React from 'react'
 import NotFound from './components/NotFound'
+import QuestionDetails from './components/QuestionDetails'
 
 class App extends React.Component {
   // Todo: add 404 page
@@ -32,8 +33,7 @@ class App extends React.Component {
           <Switch>
             <PrivateRoute path="/add" component={CreateQuestion} authenticated={isAuthenticated} />
             <PrivateRoute path="/leaderBoard" component={LeaderBoard} authenticated={isAuthenticated} />
-            <PrivateRoute path="/question/votes/:id" component={QuestionStatistics} authenticated={isAuthenticated} />
-            <PrivateRoute path="/question/:id" component={AnswerQuestion} authenticated={isAuthenticated} />
+            <PrivateRoute path="/questions/:id" component={QuestionDetails} authenticated={isAuthenticated} />
             <PublicRoute path="/login" component={Login} authenticated={isAuthenticated} />
             <Route path="/" exact component={Home} />
             <Route component={NotFound} />

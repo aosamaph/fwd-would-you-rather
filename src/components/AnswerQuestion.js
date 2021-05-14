@@ -14,7 +14,7 @@ class AnswerQuestion extends React.Component {
         const { selected } = this.state
 
         this.props.handleSubmitAnswer(question.id, selected, authedUser).then((resp) => {
-            this.props.history.push(`/question/votes/${question.id}`)
+            this.props.history.push(`/questions/${question.id}`)
         })
     }
     handleChange = (e) => {

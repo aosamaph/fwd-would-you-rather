@@ -5,12 +5,7 @@ class QuestionCard extends React.Component {
     handleClick = () => {
 
         const { question, history } = this.props
-        if (question.isAnswered) {
-            history.push(`/question/votes/${question.id}`)
-        }
-        else {
-            history.push(`/question/${question.id}`)
-        }
+        history.push(`/questions/${question.id}`)
     }
     render() {
         const { question } = this.props
